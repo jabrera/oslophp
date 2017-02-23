@@ -25,10 +25,10 @@
  * web, please send a note to license@php.net so we can mail you
  * a copy immediately.
  *
- * @project             Moon PHP
- * @package             moonphp
- * @author              Juvar Abrera <me@juvarabrera.com>
- * @copyright           2017 Juvar Abrera
+ * @project			 Moon PHP
+ * @package			 moonphp
+ * @author			  Juvar Abrera <me@juvarabrera.com>
+ * @copyright		   2017 Juvar Abrera
  */
 
 namespace Oslo\Security;
@@ -40,16 +40,16 @@ namespace Oslo\Security;
  */
 class Password {
 
-    /**
-     * Simple password hasher
-     *
-     * @param $password
-     *
-     * @return hashed password
-     *
-     */
+	/**
+	 * Simple password hasher
+	 *
+	 * @param $password
+	 *
+	 * @return hashed password
+	 *
+	 */
 	public static function hash($password) {
-        return password_hash($password, PASSWORD_DEFAULT);
-    }
+		return password_hash($password, PASSWORD_DEFAULT);
+	}
 
 }

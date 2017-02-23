@@ -25,10 +25,10 @@
  * web, please send a note to license@php.net so we can mail you
  * a copy immediately.
  *
- * @project             Moon PHP
- * @package             moonphp
- * @author              Juvar Abrera <me@juvarabrera.com>
- * @copyright           2017 Juvar Abrera
+ * @project			 Moon PHP
+ * @package			 moonphp
+ * @author			  Juvar Abrera <me@juvarabrera.com>
+ * @copyright		   2017 Juvar Abrera
  */
 
 namespace Oslo\Database;
@@ -49,81 +49,81 @@ class SQLSRV {
 	 *
 	 * @var MySQL Link Identifier
 	 */
-    protected $link;
+	protected $link;
 
-    /**
-     * Default values can be change in /library/config.php
-     *
-     * @param $host 		database host name
-     * @param $user			database username
-     * @param $pass			database password
-     * @param $database		database name
-     *
-     */
-    public function connect($host, $user, $pass, $database) {
-        $connectionInfo = array(
-            "UID" => $user,
-            "pwd" => $pass,
-            "Database" => $database,
-            "LoginTimeout" => 30,
-            "Encrypt" => 1,
-            "ReturnDatesAsStrings" => true
-        );
-        $this->link = sqlsrv_connect($host, $connectionInfo);
-    }
+	/**
+	 * Default values can be change in /library/config.php
+	 *
+	 * @param $host 		database host name
+	 * @param $user			database username
+	 * @param $pass			database password
+	 * @param $database		database name
+	 *
+	 */
+	public function connect($host, $user, $pass, $database) {
+		$connectionInfo = array(
+			"UID" => $user,
+			"pwd" => $pass,
+			"Database" => $database,
+			"LoginTimeout" => 30,
+			"Encrypt" => 1,
+			"ReturnDatesAsStrings" => true
+		);
+		$this->link = sqlsrv_connect($host, $connectionInfo);
+	}
 
-    /**
-     * This will fetch data from the query. If $singleRow
-     * is TRUE, only the first data will be taken.
-     *
-     * @param Query $query
-     * @param bool  $singleRow
-     *
-     * @return Query
-     *
-     */
-    public function read(Query $query, $singleRow = false) {
-        $q = sqlsrv_query($this->link, $query->get());
-        $result = array();
-        while($row = sqlsrv_fetch_array($q, SQLSRV_FETCH_ASSOC)) {
-            if($singleRow) {
-                $result = $row;
-                break;
-            }
-            $result[] = $row;
-        }
-        $query->setResult($result);
-        return $query;
-    }
+	/**
+	 * This will fetch data from the query. If $singleRow
+	 * is TRUE, only the first data will be taken.
+	 *
+	 * @param Query $query
+	 * @param bool  $singleRow
+	 *
+	 * @return Query
+	 *
+	 */
+	public function read(Query $query, $singleRow = false) {
+		$q = sqlsrv_query($this->link, $query->get());
+		$result = array();
+		while($row = sqlsrv_fetch_array($q, SQLSRV_FETCH_ASSOC)) {
+			if($singleRow) {
+				$result = $row;
+				break;
+			}
+			$result[] = $row;
+		}
+		$query->setResult($result);
+		return $query;
+	}
 
-    /**
-     * Executes the query from the object Query.
-     *
-     * @param Query $query
-     *
-     * @return Query
-     *
-     */
-    public function execute(Query $query) {
-        $query->setResult(sqlsrv_query($this->link, $query->get()));
-        return $query;
-    }
+	/**
+	 * Executes the query from the object Query.
+	 *
+	 * @param Query $query
+	 *
+	 * @return Query
+	 *
+	 */
+	public function execute(Query $query) {
+		$query->setResult(sqlsrv_query($this->link, $query->get()));
+		return $query;
+	}
 
-    /**
-     * Frees resources from a query.
-     *
-     * @param $q
-     *
-     */
-    public function free_resources($q) {
-        sqlsrv_free_stmt($q);
-    }
+	/**
+	 * Frees resources from a query.
+	 *
+	 * @param $q
+	 *
+	 */
+	public function free_resources($q) {
+		sqlsrv_free_stmt($q);
+	}
 
-    /**
-     *	Disconnects you to the current database connection
-     */
-    public function disconnect() {
-        sqlsrv_close($this->link);
-    }
+	/**
+	 *	Disconnects you to the current database connection
+	 */
+	public function disconnect() {
+		sqlsrv_close($this->link);
+	}
 
 }

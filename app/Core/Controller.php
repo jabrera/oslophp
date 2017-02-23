@@ -124,14 +124,14 @@ class Controller {
 		$this->_view->cleanLayout();
 	}
 
-    /**
-     * Check if a page should be accessed
-     * directly or not
-     */
-    protected function checkDirectAccess() {
-        if($this->_view->get("_direct") === false)
-            header("Location: ".ABSOLUTE_ROOT);
-    }
+	/**
+	 * Check if a page should be accessed
+	 * directly or not
+	 */
+	protected function checkDirectAccess() {
+		if($this->_view->get("_direct") === false)
+			header("Location: ".ABSOLUTE_ROOT);
+	}
 
 	/**
 	 * Render the page after Controller is loaded

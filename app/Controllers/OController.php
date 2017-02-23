@@ -38,11 +38,11 @@ class OController extends \Oslo\Core\Controller {
 	}
 
 	public function test() {
-	    $this->checkDirectAccess();
+		$this->checkDirectAccess();
 		$this->shouldBeLoggedIn(false, ROOT.DS);
 		$this->cleanLayout();
-//        if(isset($_POST['direct']))
-//            echo 'a';
+//		if(isset($_POST['direct']))
+//			echo 'a';
 	}
 
 }

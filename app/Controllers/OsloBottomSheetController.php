@@ -33,18 +33,18 @@
 
 class OsloBottomSheetController extends \Oslo\Core\Controller {
 
-    public function __construct($controller, $action) {
-        parent::__construct($controller, $action);
-	    $this->cleanLayout();
-	    $this->checkDirectAccess();
-    }
+	public function __construct($controller, $action) {
+		parent::__construct($controller, $action);
+		$this->cleanLayout();
+		$this->checkDirectAccess();
+	}
 
-    public function index() {
+	public function index() {
 
-    }
+	}
 
-    public function test() {
+	public function test() {
 
-    }
+	}
 
 }

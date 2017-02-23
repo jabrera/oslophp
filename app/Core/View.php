@@ -88,21 +88,21 @@ class View {
 	 * @param string $action
 	 */
 	public function __construct($controller, $action) {
-        $this->_controller = $controller;
-        $this->_action = $action;
-        $this->_data["PageTitle"] = Config::website()["PAGE_TITLE"];
+		$this->_controller = $controller;
+		$this->_action = $action;
+		$this->_data["PageTitle"] = Config::website()["PAGE_TITLE"];
 		$this->_layout = Config::website()["DEFAULT_LAYOUT"];
-    }
+	}
 
-    /**
-     * @param string $name
-     * @return mixed
-     */
-    public function get($name) {
-        if(isset($this->_data[$name]))
-            return $this->_data[$name];
-        return false;
-    }
+	/**
+	 * @param string $name
+	 * @return mixed
+	 */
+	public function get($name) {
+		if(isset($this->_data[$name]))
+			return $this->_data[$name];
+		return false;
+	}
 
 	/**
 	 * Sets data to be loaded to page
@@ -111,8 +111,8 @@ class View {
 	 * @param string $value
 	 */
 	public function set($name, $value) {
-        $this->_data[$name] = $value;
-    }
+		$this->_data[$name] = $value;
+	}
 
 	/**
 	 * Sets data in array to be loaded to page
@@ -120,23 +120,23 @@ class View {
 	 * @param $array
 	 */
 	public function setArray($array) {
-        foreach($array as $key => $value)
-            $this->set($key, $value);
-    }
+		foreach($array as $key => $value)
+			$this->set($key, $value);
+	}
 
 	/**
 	 * Uses no layout
 	 */
 	public function cleanLayout() {
-        $this->_layout = "";
-    }
+		$this->_layout = "";
+	}
 
 	private function setDefaultComponentDirectory($userType) {
-        $this->_cdir = array(
-            "action-bar" => ROOT.DS."app".DS."Views".DS."shared".DS.$userType.DS."action-bar.phtml",
-            "slider" => ROOT.DS."app".DS."Views".DS."shared".DS.$userType.DS."slider.phtml",
-        );
-    }
+		$this->_cdir = array(
+			"action-bar" => ROOT.DS."app".DS."Views".DS."shared".DS.$userType.DS."action-bar.phtml",
+			"slider" => ROOT.DS."app".DS."Views".DS."shared".DS.$userType.DS."slider.phtml",
+		);
+	}
 
 	/**
 	 * Sets slider menu options depending on user type
@@ -144,60 +144,60 @@ class View {
 	 * @param string $userType
 	 */
 	private function getSliderMenu($userType) {
-        if($userType == "guest") {
-            $this->_data["slider_menu"] = array(
-                array(
-                    "link" => array(
-                        array(
-                            "link" => "BottomSheet.loader(false)",
-                            "type" => "onclick",
-                            "text" => "hello"
-                        ),
-                        array(
-                            "link" => "#",
-                            "type" => "href",
-                            "text" => "hello"
-                        )
-                    ),
-                    "icon" => "face",
-                    "text" => "Hello"
-                )
-            );
-        }
-    }
+		if($userType == "guest") {
+			$this->_data["slider_menu"] = array(
+				array(
+					"link" => array(
+						array(
+							"link" => "BottomSheet.loader(false)",
+							"type" => "onclick",
+							"text" => "hello"
+						),
+						array(
+							"link" => "#",
+							"type" => "href",
+							"text" => "hello"
+						)
+					),
+					"icon" => "face",
+					"text" => "Hello"
+				)
+			);
+		}
+	}
 
 	/**
 	 * Render page
 	 */
 	public function render() {
-        $userType = $this->_session->checkUserType();
-        $this->_cdir = Config::website()["COMPONENT_DIRECTORY"][$userType];
-        $this->_data["slider_menu"] = Config::website()["SLIDER_MENU"][$userType];
-        extract($this->_data);
-        if(file_exists(ROOT.DS.'app'.DS.'Views'.DS.$this->_controller.DS.$this->_action.".phtml")) {
-            ob_start();
-            require_once(ROOT.DS.'app'.DS.'Views'.DS.$this->_controller.DS.$this->_action.".phtml");
-            $__RENDER__["BODY"] = ob_get_contents();
-            ob_end_clean();
-	        $__RENDER__["BODY"] = Utility::removeTabs($__RENDER__["BODY"]);
-	        if(file_exists(ROOT.DS.'app'.DS.'Views'.DS.$this->_controller.DS.$this->_action."_bn.phtml")) {
-	        	ob_start();
-		        require_once(ROOT.DS.'app'.DS.'Views'.DS.$this->_controller.DS.$this->_action."_bn.phtml");
-		        $__RENDER__["BOTTOM_NAVIGATION"] = ob_get_contents();
-		        ob_end_clean();
-		        $__RENDER__["BOTTOM_NAVIGATION"] = Utility::removeTabs($__RENDER__["BOTTOM_NAVIGATION"]);
-	        } else
-	        	$__RENDER__["BOTTOM_NAVIGATION"] = "";
-            if($this->_layout != "") {
-                ob_start();
-                require_once(ROOT.DS.'app'.DS.'Views'.DS."shared".DS."_layout.phtml");
-	            $__RENDER__["LAYOUT"] = ob_get_contents();
-                ob_end_clean();
-	            $__RENDER__["LAYOUT"] = Utility::removeTabs($__RENDER__["LAYOUT"]);
-                echo $__RENDER__["LAYOUT"];
-            } else
-                echo $__RENDER__["BODY"].$__RENDER__["BOTTOM_NAVIGATION"];
-        } else
-            require_once(ROOT.DS.'app'.DS.'Views'.DS."shared".DS."error.phtml");
-    }
+		$userType = $this->_session->checkUserType();
+		$this->_cdir = Config::website()["COMPONENT_DIRECTORY"][$userType];
+		$this->_data["slider_menu"] = Config::website()["SLIDER_MENU"][$userType];
+		extract($this->_data);
+		if(file_exists(ROOT.DS.'app'.DS.'Views'.DS.$this->_controller.DS.$this->_action.".phtml")) {
+			ob_start();
+			require_once(ROOT.DS.'app'.DS.'Views'.DS.$this->_controller.DS.$this->_action.".phtml");
+			$__RENDER__["BODY"] = ob_get_contents();
+			ob_end_clean();
+			$__RENDER__["BODY"] = Utility::removeTabs($__RENDER__["BODY"]);
+			if(file_exists(ROOT.DS.'app'.DS.'Views'.DS.$this->_controller.DS.$this->_action."_bn.phtml")) {
+				ob_start();
+				require_once(ROOT.DS.'app'.DS.'Views'.DS.$this->_controller.DS.$this->_action."_bn.phtml");
+				$__RENDER__["BOTTOM_NAVIGATION"] = ob_get_contents();
+				ob_end_clean();
+				$__RENDER__["BOTTOM_NAVIGATION"] = Utility::removeTabs($__RENDER__["BOTTOM_NAVIGATION"]);
+			} else
+				$__RENDER__["BOTTOM_NAVIGATION"] = "";
+			if($this->_layout != "") {
+				ob_start();
+				require_once(ROOT.DS.'app'.DS.'Views'.DS."shared".DS."_layout.phtml");
+				$__RENDER__["LAYOUT"] = ob_get_contents();
+				ob_end_clean();
+				$__RENDER__["LAYOUT"] = Utility::removeTabs($__RENDER__["LAYOUT"]);
+				echo $__RENDER__["LAYOUT"];
+			} else
+				echo $__RENDER__["BODY"].$__RENDER__["BOTTOM_NAVIGATION"];
+		} else
+			require_once(ROOT.DS.'app'.DS.'Views'.DS."shared".DS."error.phtml");
+	}
 }

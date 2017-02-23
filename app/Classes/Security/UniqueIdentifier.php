@@ -42,8 +42,8 @@ class UniqueIdentifier {
 	
 	/**
 	 * Generates n character random string
-     *
-     * n = 8 by default
+	 *
+	 * n = 8 by default
 	 *
 	 * @return string
 	 */

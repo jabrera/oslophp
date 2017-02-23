@@ -55,14 +55,14 @@ class Model {
 	 */
 	function __construct() {
 		$this->db = $this->getDatabaseInstance();
-        $this->db->connect(Config::database()["HOST"], DB_Config::database()["USER"], Config::database()["PASS"], Config::database()["NAME"]);
-    }
+		$this->db->connect(Config::database()["HOST"], DB_Config::database()["USER"], Config::database()["PASS"], Config::database()["NAME"]);
+	}
 
-    private function getDatabaseInstance() {
-	    if(Config::database()["ENGINE"] == "mysql")
-		    return new DB\MySQL();
-	    elseif(DB_ENGINE == "sqlsrv")
-		    return new DB\SQLSRV();
-    }
+	private function getDatabaseInstance() {
+		if(Config::database()["ENGINE"] == "mysql")
+			return new DB\MySQL();
+		elseif(DB_ENGINE == "sqlsrv")
+			return new DB\SQLSRV();
+	}
 
 }

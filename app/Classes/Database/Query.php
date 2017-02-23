@@ -58,8 +58,8 @@ class Query {
 	 * Query constructor.
 	 */
 	public function __construct() {
-        $this->query = "";
-    }
+		$this->query = "";
+	}
 
 	/**
 	 * Prepares the query in raw string
@@ -69,9 +69,9 @@ class Query {
 	 * @return $this
 	 */
 	public function prepare($query) {
-        $this->query = $query;
-        return $this;
-    }
+		$this->query = $query;
+		return $this;
+	}
 
 	/**
 	 * Replaces '?' inside the raw query
@@ -80,29 +80,29 @@ class Query {
 	 * @return instance
 	 */
 	public function parameters($parameters) {
-        for($i = 0; $i < sizeof($parameters); $i++) {
-            $loadTo = "?";
-            $param = strpos($this->query, $loadTo);
-            if($param !== false)
-                $this->query = substr_replace($this->query, "'".$parameters[$i]."'  ", $param, strlen($loadTo));
-        }
-        return $this;
-    }
+		for($i = 0; $i < sizeof($parameters); $i++) {
+			$loadTo = "?";
+			$param = strpos($this->query, $loadTo);
+			if($param !== false)
+				$this->query = substr_replace($this->query, "'".$parameters[$i]."'  ", $param, strlen($loadTo));
+		}
+		return $this;
+	}
 
 	/**
 	 * Sets the array of data to $result
 	 * @param $result
 	 */
 	public function setResult($result) {
-        $this->result = $result;
-    }
+		$this->result = $result;
+	}
 
 	/**
 	 * @return $result array
 	 */
 	public function getResult() {
-        return $this->result;
-    }
+		return $this->result;
+	}
 
 	/**
 	 * Gets the raw query in string
@@ -110,14 +110,14 @@ class Query {
 	 * @return string
 	 */
 	public function get() {
-        return $this->query;
-    }
+		return $this->query;
+	}
 
 	/**
 	 * Prints the raw query
 	 */
 	public function dump() {
-        echo $this->query;
-    }
+		echo $this->query;
+	}
 
 }

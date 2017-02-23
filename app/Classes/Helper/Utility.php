@@ -25,10 +25,10 @@
  * web, please send a note to license@php.net so we can mail you
  * a copy immediately.
  *
- * @project             Moon PHP
- * @package             moonphp
- * @author              Juvar Abrera <me@juvarabrera.com>
- * @copyright           2017 Juvar Abrera
+ * @project			 Moon PHP
+ * @package			 moonphp
+ * @author			  Juvar Abrera <me@juvarabrera.com>
+ * @copyright		   2017 Juvar Abrera
  */
 
 namespace Oslo\Helper;
@@ -42,13 +42,13 @@ namespace Oslo\Helper;
  */
 class Utility {
 
-    /**
-     * Removes tab into a single space
-     *
-     * @param $str
-     *
-     * @return string
-     */
+	/**
+	 * Removes tab into a single space
+	 *
+	 * @param $str
+	 *
+	 * @return string
+	 */
 	public static function removeTabs($str) {
 		return trim(preg_replace("/\n| +/", " ", preg_replace('/[ ]{2,}|[\t]/', '', $str)));
 	}

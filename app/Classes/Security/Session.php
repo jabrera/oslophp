@@ -61,8 +61,8 @@ class Session {
 	 * Starts the session
 	 */
 	public function __constuct() {
-        session_start();
-    }
+		session_start();
+	}
 
 	/**
 	 * Sets the logged user with $id
@@ -71,8 +71,8 @@ class Session {
 	 *
 	 */
 	public function setUser($id) {
-        $this->ID = $id;
-    }
+		$this->ID = $id;
+	}
 
 	/**
 	 * Gets the logged user
@@ -81,19 +81,19 @@ class Session {
 	 *
 	 */
 	public function getUser() {
-        return $this->ID;
-    }
+		return $this->ID;
+	}
 
 	/**
 	 * Checks if user is logged in or not
 	 */
 	public function checkSession() {
-        if(isset($_SESSION[Config::app()["SESSION_PREFIX"].'loggedID'])) {
-            $this->loggedIn = true;
-            $this->ID = $_SERVER[Config::app()["SESSION_PREFIX"].'loggedID'];
-            //check if user exists else logout
-        }
-    }
+		if(isset($_SESSION[Config::app()["SESSION_PREFIX"].'loggedID'])) {
+			$this->loggedIn = true;
+			$this->ID = $_SERVER[Config::app()["SESSION_PREFIX"].'loggedID'];
+			//check if user exists else logout
+		}
+	}
 
 	/**
 	 * Gets the user type of the user. If user is logged,
@@ -104,8 +104,8 @@ class Session {
 	 *
 	 */
 	public function checkUserType() {
-        return ($this->loggedIn) ?  : "guest";
-    }
+		return ($this->loggedIn) ?  : "guest";
+	}
 
 }
 
