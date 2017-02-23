@@ -131,48 +131,11 @@ class View {
 		$this->_layout = "";
 	}
 
-	private function setDefaultComponentDirectory($userType) {
-		$this->_cdir = array(
-			"action-bar" => ROOT.DS."app".DS."Views".DS."shared".DS.$userType.DS."action-bar.phtml",
-			"slider" => ROOT.DS."app".DS."Views".DS."shared".DS.$userType.DS."slider.phtml",
-		);
-	}
-
-	/**
-	 * Sets slider menu options depending on user type
-	 *
-	 * @param string $userType
-	 */
-	private function getSliderMenu($userType) {
-		if($userType == "guest") {
-			$this->_data["slider_menu"] = array(
-				array(
-					"link" => array(
-						array(
-							"link" => "BottomSheet.loader(false)",
-							"type" => "onclick",
-							"text" => "hello"
-						),
-						array(
-							"link" => "#",
-							"type" => "href",
-							"text" => "hello"
-						)
-					),
-					"icon" => "face",
-					"text" => "Hello"
-				)
-			);
-		}
-	}
-
 	/**
 	 * Render page
 	 */
 	public function render() {
 		$userType = $this->_session->checkUserType();
-		$this->_cdir = Config::website()["COMPONENT_DIRECTORY"][$userType];
-		$this->_data["slider_menu"] = Config::website()["SLIDER_MENU"][$userType];
 		extract($this->_data);
 		if(file_exists(ROOT.DS.'app'.DS.'Views'.DS.$this->_controller.DS.$this->_action.".phtml")) {
 			ob_start();
@@ -180,14 +143,6 @@ class View {
 			$__RENDER__["BODY"] = ob_get_contents();
 			ob_end_clean();
 			$__RENDER__["BODY"] = Utility::removeTabs($__RENDER__["BODY"]);
-			if(file_exists(ROOT.DS.'app'.DS.'Views'.DS.$this->_controller.DS.$this->_action."_bn.phtml")) {
-				ob_start();
-				require_once(ROOT.DS.'app'.DS.'Views'.DS.$this->_controller.DS.$this->_action."_bn.phtml");
-				$__RENDER__["BOTTOM_NAVIGATION"] = ob_get_contents();
-				ob_end_clean();
-				$__RENDER__["BOTTOM_NAVIGATION"] = Utility::removeTabs($__RENDER__["BOTTOM_NAVIGATION"]);
-			} else
-				$__RENDER__["BOTTOM_NAVIGATION"] = "";
 			if($this->_layout != "") {
 				ob_start();
 				require_once(ROOT.DS.'app'.DS.'Views'.DS."shared".DS."_layout.phtml");
@@ -195,8 +150,7 @@ class View {
 				ob_end_clean();
 				$__RENDER__["LAYOUT"] = Utility::removeTabs($__RENDER__["LAYOUT"]);
 				echo $__RENDER__["LAYOUT"];
-			} else
-				echo $__RENDER__["BODY"].$__RENDER__["BOTTOM_NAVIGATION"];
+			} 
 		} else
 			require_once(ROOT.DS.'app'.DS.'Views'.DS."shared".DS."error.phtml");
 	}

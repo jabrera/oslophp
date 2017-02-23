@@ -31,18 +31,14 @@
  * @copyright			2017 Juvar Abrera
  */
 
-class OController extends \Oslo\Core\Controller {
+class OsloController extends \Oslo\Core\Controller {
 
 	public function __construct($controller, $action) {
 		parent::__construct($controller, $action);
 	}
 
-	public function test() {
-		$this->checkDirectAccess();
-		$this->shouldBeLoggedIn(false, ROOT.DS);
-		$this->cleanLayout();
-//		if(isset($_POST['direct']))
-//			echo 'a';
+	public function index() {
+
 	}
 
 }
