@@ -1,5 +1,5 @@
 <?php
-define("PROJECT_CODE", "oslo-php-fw");
+define("PROJECT_CODE", "oslophp");
 define("DS", DIRECTORY_SEPARATOR);
 define("ROOT", dirname(__FILE__));
 if(strpos($_SERVER["HTTP_HOST"], "localhost") !== false)
