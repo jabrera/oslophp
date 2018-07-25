@@ -1,0 +1,33 @@
+<?php
+use Oslo\Core\Config;
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title><?=Config::website()["PAGE_TITLE"]?></title>
+	<script type="text/javascript" src="<?=ABSOLUTE_ROOT?>assets/scripts/jquery.min.js"></script>
+	<link href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900" rel="stylesheet" type="text/css">
+	<link href="<?=ABSOLUTE_ROOT?>assets/styles/m.css" rel="stylesheet">
+	<link href="<?=ABSOLUTE_ROOT?>assets/styles/mdi.css" rel="stylesheet">
+	<link href="<?=ABSOLUTE_ROOT?>assets/styles/style.css" rel="stylesheet">
+	<script src="<?=ABSOLUTE_ROOT?>assets/scripts/jquery.min.js"></script>
+	<script src="<?=ABSOLUTE_ROOT?>assets/scripts/autosize.min.js"></script>
+	<script src="<?=ABSOLUTE_ROOT?>assets/scripts/bulaga-1.0.0.js"></script>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="<?=Config::website()["SITE_NAME"]?>" />
+	<meta property="og:url" content="<?=Config::website()["SITE_URL"]?>" />
+	<meta property="og:site_name" content="<?=Config::website()["SITE_NAME"]?>" />
+	<meta property="og:image" content="<?=Config::website()["SITE_IMG"]?>" />
+	<meta name="twitter:site" content="<?=Config::website()["SITE_TWITTER"]?>" />
+	<link rel="shortcut icon" href="<?=ABSOLUTE_ROOT?>favicon.ico">
+	<meta name="theme-color" content="<?=Config::website()["PRIMARY_COLOR"]?>">
+</head>
+<body>
+<div>
+	<?=$__RENDER__["BODY"]?>
+</div>
+</body>
+</html>
